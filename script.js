@@ -437,4 +437,57 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.filter = 'none';
         });
     });
+
+    // Модальное окно для галереи
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeModal = document.querySelector('.modal-close');
+    const galleryImages = document.querySelectorAll('.gallery-image');
+
+    // Открытие модального окна при клике на изображение
+    galleryImages.forEach(image => {
+        image.addEventListener('click', function() {
+            modal.classList.add('show');
+            modalImage.src = this.src;
+            modalImage.alt = this.alt;
+            modalCaption.textContent = this.alt;
+            document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+        });
+    });
+
+    // Закрытие модального окна
+    function closeImageModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+        document.body.style.overflow = 'auto'; // Восстанавливаем прокрутку
+    }
+
+    // Закрытие по клику на крестик
+    closeModal.addEventListener('click', closeImageModal);
+
+    // Закрытие по клику вне изображения
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeImageModal();
+        }
+    });
+
+    // Закрытие по нажатию Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeImageModal();
+        }
+    });
+
+    // Предотвращение закрытия при клике на само изображение
+    modalImage.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    modalCaption.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
 });
