@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Анимация элементов внутри вкладки
     function animateTabContent(content) {
-        const animatableElements = content.querySelectorAll('.timeline-item, .gallery-item, .work-category, .museum-info, .song');
+        const animatableElements = content.querySelectorAll('.timeline-item, .gallery-item, .work-category, .museum-info, .song, .memorial-card');
         
         animatableElements.forEach((element, index) => {
             element.style.opacity = '0';
@@ -176,6 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         document.querySelectorAll('.museum-info').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.15}s`;
+            observer.observe(item);
+        });
+
+        document.querySelectorAll('.memorial-card').forEach((item, index) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
             item.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.15}s`;
@@ -444,29 +451,61 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalCaption = document.getElementById('modalCaption');
     const closeModal = document.querySelector('.modal-close');
     const galleryImages = document.querySelectorAll('.gallery-image');
+    let currentImageIndex = 0;
 
     // Открытие модального окна при клике на изображение
-    galleryImages.forEach(image => {
+    galleryImages.forEach((image, index) => {
         image.addEventListener('click', function() {
-            modal.classList.add('show');
-            modalImage.src = this.src;
-            modalImage.alt = this.alt;
-            modalCaption.textContent = this.alt;
-            document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+            currentImageIndex = index;
+            openModal(this);
         });
     });
+
+    function openModal(imageElement) {
+        modal.style.display = 'flex';
+        modal.classList.add('show');
+        modalImage.src = imageElement.src;
+        modalImage.alt = imageElement.alt;
+        modalCaption.textContent = imageElement.alt;
+        document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+        
+        // Добавляем обработчик для загрузки изображения
+        modalImage.onload = function() {
+            // Изображение загружено, можно показать
+            this.style.opacity = '1';
+        };
+        modalImage.style.opacity = '0.5'; // Показываем загрузку
+    }
 
     // Закрытие модального окна
     function closeImageModal() {
         modal.classList.remove('show');
         setTimeout(() => {
             modal.style.display = 'none';
+            modalImage.src = ''; // Очищаем src для экономии памяти
         }, 300);
         document.body.style.overflow = 'auto'; // Восстанавливаем прокрутку
     }
 
+    // Навигация по изображениям с клавиатуры
+    function showNextImage() {
+        if (currentImageIndex < galleryImages.length - 1) {
+            currentImageIndex++;
+            openModal(galleryImages[currentImageIndex]);
+        }
+    }
+
+    function showPrevImage() {
+        if (currentImageIndex > 0) {
+            currentImageIndex--;
+            openModal(galleryImages[currentImageIndex]);
+        }
+    }
+
     // Закрытие по клику на крестик
-    closeModal.addEventListener('click', closeImageModal);
+    if (closeModal) {
+        closeModal.addEventListener('click', closeImageModal);
+    }
 
     // Закрытие по клику вне изображения
     modal.addEventListener('click', function(e) {
@@ -475,10 +514,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Закрытие по нажатию Escape
+    // Закрытие по нажатию Escape и навигация стрелками
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            closeImageModal();
+        if (modal.classList.contains('show')) {
+            switch(e.key) {
+                case 'Escape':
+                    closeImageModal();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    showNextImage();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    showPrevImage();
+                    break;
+            }
         }
     });
 
