@@ -40,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Анимация элементов внутри вкладки
                 animateTabContent(targetContent);
+                
+                // Переинициализация галереи если это вкладка галереи
+                if (targetTab === 'gallery') {
+                    setTimeout(() => {
+                        if (typeof initializeGallery === 'function') {
+                            initializeGallery();
+                        }
+                    }, 300);
+                }
             }
         }, 200);
 
@@ -450,18 +459,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalImage = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
     const closeModal = document.querySelector('.modal-close');
-    const galleryImages = document.querySelectorAll('.gallery-image');
     let currentImageIndex = 0;
+    let galleryImages = [];
 
-    // Открытие модального окна при клике на изображение
-    galleryImages.forEach((image, index) => {
-        image.addEventListener('click', function() {
-            currentImageIndex = index;
-            openModal(this);
+    // Функция для инициализации галереи
+    function initializeGallery() {
+        galleryImages = document.querySelectorAll('.gallery-image');
+        console.log('Found gallery images:', galleryImages.length); // Для отладки
+        
+        // Удаляем старые обработчики и добавляем новые
+        galleryImages.forEach((image, index) => {
+            // Клонируем элемент чтобы удалить все старые обработчики
+            const newImage = image.cloneNode(true);
+            image.parentNode.replaceChild(newImage, image);
+            
+            newImage.addEventListener('click', function() {
+                console.log('Image clicked:', index); // Для отладки
+                currentImageIndex = index;
+                openModal(this);
+            });
         });
+        
+        // Обновляем список после замены элементов
+        galleryImages = document.querySelectorAll('.gallery-image');
+    }
+
+    // Альтернативный способ - делегирование событий
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('gallery-image')) {
+            console.log('Gallery image clicked via delegation'); // Для отладки
+            const allImages = document.querySelectorAll('.gallery-image');
+            const clickedIndex = Array.from(allImages).indexOf(e.target);
+            currentImageIndex = clickedIndex;
+            openModal(e.target);
+        }
     });
 
     function openModal(imageElement) {
+        console.log('Opening modal for:', imageElement.src); // Для отладки
+        console.log('Modal element:', modal); // Для отладки
+        console.log('Modal image element:', modalImage); // Для отладки
+        
+        if (!modal || !modalImage || !modalCaption) {
+            console.error('Modal elements not found!');
+            return;
+        }
+        
         modal.style.display = 'flex';
         modal.classList.add('show');
         modalImage.src = imageElement.src;
@@ -534,11 +577,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Предотвращение закрытия при клике на само изображение
-    modalImage.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
+    if (modalImage) {
+        modalImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
 
-    modalCaption.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
+    if (modalCaption) {
+        modalCaption.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Инициализация галереи при загрузке
+    initializeGallery();
+    
+    // Переинициализация при переключении на вкладку галереи
+    const galleryTab = document.querySelector('[data-tab="gallery"]');
+    if (galleryTab) {
+        galleryTab.addEventListener('click', function() {
+            setTimeout(initializeGallery, 200); // Задержка для загрузки контента
+        });
+    }
 });
