@@ -958,34 +958,68 @@ h3 {
     margin-top: 2rem;
 }
 
-.verse {
-    margin-bottom: 1.5rem;
+.verse-column {
+    margin-bottom: 2rem;
     padding: 1.5rem;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 10px;
     transition: all 0.3s ease;
+    border: 1px solid rgba(45, 90, 39, 0.1);
 }
 
-.verse:hover {
-    background: transparent;
-    transform: none;
+.verse-column:hover {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(45, 90, 39, 0.1);
 }
 
-.verse p {
+.verse-column p {
     font-family: 'Playfair Display', serif;
-    line-height: 1.8;
+    line-height: 1.6;
     color: var(--text-dark);
     font-size: 1.1rem;
-    white-space: normal;
+    margin: 0.3rem 0;
+    text-align: left;
 }
 
-.verse p br {
-    display: none;
+.verse-column p:first-child {
+    margin-top: 0;
 }
 
-.verse p::after {
-    content: ' ';
-    white-space: pre;
+.verse-column p:last-child {
+    margin-bottom: 0;
+}
+
+/* Адаптивность для стихов */
+@media (min-width: 768px) {
+    .song-text {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .verse-column {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .song-text {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .verse-column {
+        padding: 2rem;
+    }
+    
+    .verse-column p {
+        font-size: 1.15rem;
+        line-height: 1.7;
+    }
 }
 
 /* Галерея */
@@ -1421,6 +1455,21 @@ h3 {
     .song {
         padding: 2rem;
         min-width: auto;
+    }
+    
+    .song-text {
+        display: block;
+        margin-top: 1.5rem;
+    }
+    
+    .verse-column {
+        margin-bottom: 1.5rem;
+        padding: 1.2rem;
+    }
+    
+    .verse-column p {
+        font-size: 1rem;
+        line-height: 1.5;
     }
 
     .gallery-grid {
