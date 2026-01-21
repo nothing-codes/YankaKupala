@@ -956,62 +956,53 @@ h3 {
 
 .song-text {
     margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.verse-column {
+.verse-stanza {
     margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(45, 90, 39, 0.1);
+    padding: 0;
+    background: transparent;
+    border: none;
 }
 
-.verse-column:hover {
-    background: rgba(255, 255, 255, 0.85);
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(45, 90, 39, 0.1);
-}
-
-.verse-column p {
+.verse-stanza p {
     font-family: 'Playfair Display', serif;
     line-height: 1.6;
     color: var(--text-dark);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin: 0;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(45, 90, 39, 0.1);
+    transition: all 0.3s ease;
+}
+
+.verse-stanza:hover p {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(45, 90, 39, 0.1);
 }
 
 /* Адаптивность для стихов */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .song-text {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        margin-top: 2rem;
+        margin-top: 1.5rem;
     }
     
-    .verse-column {
-        margin-bottom: 0;
-    }
-}
-
-@media (min-width: 1024px) {
-    .song-text {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        margin-top: 2rem;
+    .verse-stanza {
+        margin-bottom: 1.5rem;
     }
     
-    .verse-column {
-        padding: 2rem;
-    }
-    
-    .verse-column p {
-        font-size: 1.15rem;
-        line-height: 1.7;
+    .verse-stanza p {
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 1.2rem;
     }
 }
 
@@ -1451,18 +1442,17 @@ h3 {
     }
     
     .song-text {
-        display: block;
         margin-top: 1.5rem;
     }
     
-    .verse-column {
+    .verse-stanza {
         margin-bottom: 1.5rem;
-        padding: 1.2rem;
     }
     
-    .verse-column p {
+    .verse-stanza p {
         font-size: 1rem;
         line-height: 1.5;
+        padding: 1.2rem;
     }
 
     .gallery-grid {
