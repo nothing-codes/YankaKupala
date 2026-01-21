@@ -10,6 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Декоративные элементы фона -->
+    <div class="bg-decorations">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+        <div class="floating-text text-1">Янка Купала</div>
+        <div class="floating-text text-2">Беларуская літаратура</div>
+        <div class="floating-text text-3">Жалейка</div>
+        <div class="floating-text text-4">Гусляр</div>
+        <div class="floating-quote">"Не пакідай жа сваіх..."</div>
+    </div>
     <header class="header">
         <div class="container">
             <h1 class="logo">ЯНКА КУПАЛА</h1>
@@ -37,18 +50,72 @@
             <section id="home" class="tab-content active">
                 <div class="hero">
                     <div class="hero-image">
-                        <img src="images/фотка.jpg" alt="Янка Купала" class="portrait">
+                        <div class="portrait-frame">
+                            <img src="images/young-kupala.jpg" alt="Янка Купала" class="portrait">
+                            <div class="portrait-glow"></div>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">1882</span>
+                                <span class="stat-label">Год нараджэння</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">60</span>
+                                <span class="stat-label">Гадоў жыцця</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">20+</span>
+                                <span class="stat-label">Кніг</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="hero-content">
+                        <div class="hero-badge">Народный паэт БССР</div>
                         <blockquote class="epigraph">
-                            <p>«А хто там ідзе? А што там нясе?<br>
-                            Ці сонца ясное, ці зорку?»</p>
+                            <p>«Канец свету там, дзе канец<br>
+                            Роднай мовы, роднай песні...»</p>
                         </blockquote>
                         <p class="hero-description">
                             Янка Купала (сапраўднае імя Іван Дамінікавіч Луцэвіч) — класік беларускай літаратуры, 
                             адзін са стваральнікаў сучаснай беларускай літаратурнай мовы. Народны паэт БССР (1925), 
                             акадэмік АН БССР (1928), лаўрэат Сталінскай прэміі (1941). Аўтар лозунга «Жыве Беларусь!».
                         </p>
+                        <div class="hero-achievements">
+                            <div class="achievement">
+                                <div class="achievement-text">
+                                    <strong>Сталінская прэмія</strong>
+                                    <span>1941 год</span>
+                                </div>
+                            </div>
+                            <div class="achievement">
+                                <div class="achievement-text">
+                                    <strong>Акадэмік АН БССР</strong>
+                                    <span>1928 год</span>
+                                </div>
+                            </div>
+                            <div class="achievement">
+                                <div class="achievement-text">
+                                    <strong>Драматург</strong>
+                                    <span>5+ п'ес</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Дополнительная информационная панель -->
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3>Літаратурная спадчына</h3>
+                        <p>Больш за 20 паэтычных зборнікаў, п'есы, паэмы і пераклады класічных твораў</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Міжнароднае прызнанне</h3>
+                        <p>Творы перакладзены на дзесяткі моў свету, вывучаюцца ў школах і ўніверсітэтах</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Музычная спадчына</h3>
+                        <p>Вершы пакладзены на музыку і сталі народнымі песнямі Беларусі</p>
                     </div>
                 </div>
             </section>
@@ -61,18 +128,18 @@
                         <div class="timeline-year">1882</div>
                         <div class="timeline-content">
                             <h3>Нараджэнне</h3>
-                            <p>7 ліпеня ў вёсцы Вязынка Вілейскага павета нарадзіўся Іван Дамінікавіч Луцэвіч у беларускай каталіцкай сям'і. Бацькі былі збяднелыя беларускія шляхціцы, якія арандавалі зямлю.</p>
+                            <p>7 ліпеня ў вёсцы Вязынка Вілейскага павета нарадзіўся Іван Дамінікавіч Луцэвіч у беларускай каталіцкай сям'і. Бацькі - Дамінік Ануфрыевіч і Бянігна Іванаўна - беларускія шляхціцы, якія арандавалі зямлю ў буйных памешчыкаў.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">1898</div>
                         <div class="timeline-content">
                             <h3>Адукацыя</h3>
-                            <p>Скончыў народнае вучылішча ў мястэчку Беларучы. У 1899 годзе здаў экзамен на званне хатняга настаўніка.</p>
+                            <p>Скончыў народнае Сеніцкае вучылішча ў мястэчку Беларучы. У 1899 годзе здаў экзамен на званне хатняга настаўніка.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-year">1903-1904</div>
+                        <div class="timeline-year">1904</div>
                         <div class="timeline-content">
                             <h3>Першыя публікацыі</h3>
                             <p>Першыя творы на польскай мове ў часопісе «Ziarno». Першы верш на беларускай мове «Мая доля» (15 ліпеня 1904 г.).</p>
@@ -219,11 +286,12 @@
                 <div class="songs">
                     <div class="song">
                         <h3>«Роднае слова»</h3>
-                        <p class="composer">Верш Янкі Купалы</p>
+                        <p class="composer">Верш Янкі Купалы, музыка от Suno AI</p>
                         <div class="audio-player">
-                            <div class="player-placeholder">
-                                🎵 Аудыёплеер (месца для ўстаўкі аудыё)
-                            </div>
+                            <audio controls class="audio-control">
+                                <source src="RodnaeSlovo.mp3" type="audio/mpeg">
+                                Ваш браўзер не падтрымлівае аудыё элемент.
+                            </audio>
                         </div>
                         <div class="song-text">
                             <div class="verse">
@@ -255,11 +323,12 @@
 
                     <div class="song">
                         <h3>«Явар і каліна»</h3>
-                        <p class="composer">Верш Янкі Купалы, музыка Уладзіміра Мулявіна / ВІА «Песняры»</p>
+                        <p class="composer">Верш Янкі Купалы, музыка от Suno AI</p>
                         <div class="audio-player">
-                            <div class="player-placeholder">
-                                🎵 Аудыёплеер (месца для ўстаўкі аудыё)
-                            </div>
+                            <audio controls class="audio-control">
+                                <source src="YavoriKalina.mp3" type="audio/mpeg">
+                                Ваш браўзер не падтрымлівае аудыё элемент.
+                            </audio>
                         </div>
                         <div class="song-text">
                             <div class="verse">
@@ -302,27 +371,27 @@
                 <h2>Галерэя</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/фотка.jpg" alt="Янка Купала ў маладосці" class="gallery-image">
+                        <img src="images/young-kupala.jpg" alt="Янка Купала ў маладосці" class="gallery-image">
                         <p class="gallery-caption">Янка Купала ў маладосці</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/фотка.jpg" alt="Янка Купала ў сталым узросце" class="gallery-image">
+                        <img src="images/old-kupala.jpg" alt="Янка Купала ў сталым узросце" class="gallery-image">
                         <p class="gallery-caption">Янка Купала ў сталым узросце</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/фотка.jpg" alt="Вокладка зборніка 'Жалейка'" class="gallery-image">
+                        <img src="images/zhaleyka.jpg" alt="Вокладка зборніка 'Жалейка'" class="gallery-image">
                         <p class="gallery-caption">Вокладка першага зборніка «Жалейка» (1908)</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/фотка.jpg" alt="Вокладка зборніка 'Гусляр'" class="gallery-image">
+                        <img src="images/guslyar.jpg" alt="Вокладка зборніка 'Гусляр'" class="gallery-image">
                         <p class="gallery-caption">Вокладка зборніка «Гусляр» (1910)</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/фотка.jpg" alt="Дом-музей у Вязынцы" class="gallery-image">
+                        <img src="images/vyazynka.jfif" alt="Дом-музей у Вязынцы" class="gallery-image">
                         <p class="gallery-caption">Дом-музей Янкі Купалы ў Вязынцы</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/фотка.jpg" alt="Музей у Мінску" class="gallery-image">
+                        <img src="images/literary-museum.jpg" alt="Музей у Мінску" class="gallery-image">
                         <p class="gallery-caption">Дзяржаўны музей Янкі Купалы ў Мінску</p>
                     </div>
                 </div>
@@ -363,7 +432,7 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 Павага да культурнай спадчыны</p>
-            <p>Па матэрыялах Купалаўскай энцыклапедыі</p>
+            <p>Па матэрыялах Вікіпедыі</p>
         </div>
     </footer>
 
